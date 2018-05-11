@@ -53,3 +53,41 @@
 ### “内联元素”的“内联”特指“外在盒子”，和“display 为 inline 的元素”不是一个概念！inline-block 和 inline-table 都是“内联元素”，因为它们的 “外在盒子”都是内联盒子
 
 ### 支撑盒子 `strut`
+
+
+## 替换元素特性
+* 内容的外观不受页面上的 CSS 的影响
+* 有自己的尺寸
+* 在很多 CSS 属性上有自己的一套表现规则。
+
+## 替换元素的默认 display 值 
+![](./imgs/4-1.png)
+
+## \<input>和\<button>按钮的区别在什么地方？
+区别在于两 种按钮默认的 white-space 值不一样，前者是 pre，后者是 normal，所表示出来的   现象差异就是：当按钮文字足够多的时候，\<input>按钮不会自动换行，\<button>按钮 则会。 
+
+## 替换元素的尺寸计算规则 
+* 固有尺寸指的是替换内容原本的尺寸。
+* “HTML 尺寸”只能通过 HTML 原生属性改变
+* CSS 尺寸特指可以通过 CSS 的 width 和 height 或者 max-width/min-width 和 max-height/min-height 设置的尺寸，对应盒尺寸中的 content box
+    * 如果没有 CSS 尺寸和 HTML 尺寸，则使用固有尺寸作为终的宽高
+    ```css
+    <img src="1.jpg">
+    ```
+    * 如果没有CSS尺寸，则使用HTML 尺寸作为终的宽高
+    ```css
+    <img src="1.jpg" width="128" height="96">
+    ```
+    * 如果有 CSS 尺寸，则终尺寸由 CSS 属性决定
+    ```css
+    img { width: 200px; height: 150px; }
+    <img src="1.jpg" width="128" height="96">
+    ```
+    *  如果“固有尺寸”含有固有的宽高比例，同时仅设置了宽度或仅设置了高度，则元素依 然按照固有的宽高比例显示。
+    ```css
+    img { width: 200px; } 
+    <img src="1.jpg"> 
+    ```
+    *  如果上面的条件都不符合，则终宽度表现为 300 像素，高度为 150 像素，宽高比 2:1。 
+    * 内联替换元素和块级替换元素使用上面同一套尺寸计算规则。
+    
